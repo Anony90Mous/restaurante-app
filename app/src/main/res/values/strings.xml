@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Restaurante</string>
+    <string name="q1">1</string>
+    <string name="q2">2</string>
+    <string name="q3">3</string>
+    <string name="q4">4</string>
+    <string name="q5">5</string>
+    <string name="q6">6</string>
+    <string name="q7">7</string>
+    <string name="q8">8</string>
+    <string name="q9">9</string>
+    <string name="resevar">RESERVAR</string>
+    <string name="reservado">RESERVADO</string>
+    <string name="Limpar">Limpar</string>
+    <string name="TirarReserva">Livrar</string>
+</resources>
