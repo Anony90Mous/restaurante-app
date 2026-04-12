@@ -24,3 +24,4 @@ Aplicativo Android para gerenciamento de mesas.
 1. Clonar o repositório
 2. Abrir no Android Studio
 3. Executar o projeto
+4. Email e Senha para o login: admin@gmail.com/admin123 
