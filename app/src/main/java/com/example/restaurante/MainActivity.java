@@ -19,24 +19,24 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    LinearLayout layout_1,layout_2,layout_3,layout_4,layout_5,layout_6,layout_7,layout_8,layout_9,layout_selecionado;
+    LinearLayout layout_1, layout_2, layout_3, layout_4, layout_5, layout_6, layout_7, layout_8, layout_9, layout_selecionado;
     ArrayList<LinearLayout> layouts_reservados = new ArrayList<>();
-    TextView textoMesa1,textoMesa2,textoMesa3,textoMesa4,textoMesa5, textoMesa6, textoMesa7, textoMesa8, textoMesa9,texto_selecionado;
+    TextView textoMesa1, textoMesa2, textoMesa3, textoMesa4, textoMesa5, textoMesa6, textoMesa7, textoMesa8, textoMesa9, texto_selecionado;
     Button btnReserva, limpar, tirarReserva;
 
 
-    void salvarReservas(){
+    void salvarReservas() {
         SharedPreferences prf = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         SharedPreferences.Editor editar = prf.edit();
 
         StringBuilder dados = new StringBuilder();
 
-        for (LinearLayout layout : layouts_reservados){
+        for (LinearLayout layout : layouts_reservados) {
             int numeroReversa = (int) layout.getTag();
             dados.append(numeroReversa).append(",");
         }
 
-        editar.putString("mesas_reservadas",dados.toString());
+        editar.putString("mesas_reservadas", dados.toString());
         editar.apply();
     }
 
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    void resetMesa(LinearLayout layout, TextView texto, int textoPadrao){
+    void resetMesa(LinearLayout layout, TextView texto, int textoPadrao) {
         if (layouts_reservados.contains(layout)) {
             layout.setBackgroundResource(R.drawable.bg_lyt_reservado);
             texto.setText(R.string.reservado);
@@ -116,15 +116,16 @@ public class MainActivity extends AppCompatActivity {
             texto.setTextSize(40);
             texto.setText(textoPadrao);
         }
-   }
+    }
 
-   void tirarReserva(LinearLayout layout, TextView text, int textDefault){
+    void tirarReserva(LinearLayout layout, TextView text, int textDefault) {
         layouts_reservados.remove(layout);
         layout.setBackgroundResource(R.drawable.bg_lyt);
         text.setTextSize(40);
         text.setText(textDefault);
-   }
-    void limparCores(){
+    }
+
+    void limparCores() {
         resetMesa(layout_1, textoMesa1, R.string.q1);
         resetMesa(layout_2, textoMesa2, R.string.q2);
         resetMesa(layout_3, textoMesa3, R.string.q3);
@@ -273,10 +274,17 @@ public class MainActivity extends AppCompatActivity {
         btnReserva.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (layouts_reservados.contains(layout_selecionado)){
-                    Toast.makeText(MainActivity.this,"Esta mesa ja foi reservada!",Toast.LENGTH_SHORT).show();
+
+                if (layout_selecionado == null) {
+                    Toast.makeText(MainActivity.this, "Selecione uma mesa!", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+                if (layouts_reservados.contains(layout_selecionado)) {
+                    Toast.makeText(MainActivity.this, "Esta mesa ja foi reservada!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 layout_selecionado.setBackgroundResource(R.drawable.bg_lyt_reservado);
                 texto_selecionado.setTextSize(16);
                 texto_selecionado.setText(R.string.reservado);
@@ -297,8 +305,8 @@ public class MainActivity extends AppCompatActivity {
         tirarReserva.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (layout_selecionado == null){
-                    Toast.makeText(MainActivity.this,"Selecione uma mesa reservada!", Toast.LENGTH_SHORT).show();
+                if (layout_selecionado == null) {
+                    Toast.makeText(MainActivity.this, "Selecione uma mesa reservada!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 int numero = (int) layout_selecionado.getTag();
@@ -307,7 +315,7 @@ public class MainActivity extends AppCompatActivity {
                         "string",
                         getPackageName()
                 );
-                tirarReserva(layout_selecionado,texto_selecionado,textoDefault);
+                tirarReserva(layout_selecionado, texto_selecionado, textoDefault);
                 salvarReservas();
             }
         });

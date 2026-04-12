@@ -13,4 +13,8 @@
     <string name="reservado">RESERVADO</string>
     <string name="Limpar">Limpar</string>
     <string name="TirarReserva">Livrar</string>
+    <string name="Email">Insira seu E-mail</string>
+    <string name="Senha">Insira sua Senha</string>
+    <string name="Login">Entrar</string>
+    <string name="lembrarSenha">Lembrar Senha</string>
 </resources>
